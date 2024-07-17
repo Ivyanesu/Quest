@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Smart_Tech Enterprises</title>
+
+</select>
+  <style>
+ body {
+  background-color: rgb(237, 244, 246);
+}
+
+
+.prodct { padding-left:200px;width:100%; }
+.cart { position:relative;float:left;width:100%; }
+.left-menu { position:relative;float:left;width:200px;right:200px;margin-left:-100%; }
+
+div {
+  text-align:center;
+}
+
+    .product {
+      margin-bottom: 20px;
+    }
+
+    .product img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .cart {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cart table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cart th, .cart td {
+      padding: 5px;
+      text-align: left;
+    }
+
+    .cart th {
+      background-color: #f2f2f2e2;
+    }
+
+    .total {
+      font-weight: bold;
+    }
+    
+    h1 
+    {font-size: 40px;
+    color: rgb(27, 8, 46);
+        text-align: center;}
+    
+
+    .image-row {
+  display: flex;
+  justify-content: space-between; }
+h2{
+    font-size: 20px;
+    color: rgb(11, 10, 10);
+}
+button{
+    width: 30%;
+    position: relative;
+    border: none;
+    border-radius: 5px;
+    background-color: goldenrod;
+    padding: 7px 15px;
+    cursor: pointer;
+    color: white;
+}
+button:hover{
+    background-color: #333;
+}
+.grid {
+            display:grid;
+            grid-column-gap: 1rem;
+        }
+        .grid--plus {
+            grid-template-columns: repeat(4, 1fr);
+        }
+       
+
+  </style>
+</head>
+<body>
+  
+  <h1>Smart_Tech Enterprises</h1>
+
+  <span id="products">
+
+
+    <span class="product">
+        <div class="grid grid--plus">
+            <div class="product">
+                <img src="laptop1.jpg" alt="HP Laptop">
+                <h3>Laptop</h3>
+                <p>Price: $300</p>
+                <button onclick="addToCart('HP Laptop', 300)">Buy now</button>
+             </div>
+            <div class="product">
+                <img src="mouse1.jpg" alt="Mouse">
+                <h3>Mouse </h3>
+                <p>Price: $15</p>
+                <button onclick="addToCart('Mouse', 15)">Buy now</button>
+                </div>
+            <div class="product">
+                <img src="mifi1.jpg" alt="Mifi">
+                <h3>Mifi </h3>
+                <p>Price: $35</p>
+                <button onclick="addToCart('Mifi', 15)">Buy now</button>
+                </div>
+            <div class="product">
+                <img src="printer.jpg" alt="Mifi">
+                <h3>Printer</h3>
+                <p>Price: $300</p>
+                <button onclick="addToCart('Printer', 300)">Buy now</button>
+                </div>
+        </div>
+        </br>
+    
+                <div class="grid grid--plus">
+                    <div class="product">
+                        <img src="router.jpg" alt="Router">
+                        <h3>Router</h3>
+                        <p>Price: $80</p>
+                        <button onclick="addToCart('Router', 80)">Buy now</button>
+                     </div>
+                    <div class="product">
+                        <img src="LAN.jpg" alt="LAN">
+                        <h3>LAN Cable</h3>
+                        <p>Price: $5</p>
+                        <button onclick="addToCart('LAN cable', 5)">Buy now</button>
+                        </div>
+                    <div class="product">
+                        <img src="keyboard.jpg" alt="Keyboard">
+                        <h3>Keyboard </h3>
+                        <p>Price: $10</p>
+                        <button onclick="addToCart('Keyboard', 10)">Buy now</button>
+                        </div>
+                    <div class="product">
+                        <img src="ram.jpg" alt="RAM">
+                        <h3>8Gb RAM</h3>
+                        <p>Price: $12</p>
+                        <button onclick="addToCart('RAM', 12)">Buy now</button>
+                        </div>
+                </div>
+               
+    </span>
+ 
+</br>
+
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="cartItems">
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="total" colspan="3">Total: $<span id="cartTotal">0</span></td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+
+  <script>
+    
+    var cartItems = [];
+
+    function addToCart(productName, price) {
+      var item = { name: productName, price: price };
+      cartItems.push(item);
+      updateCart();
+    }
+
+    function updateCart() {
+      var cartContainer = document.getElementById('cartItems');
+      var cartTotal = document.getElementById('cartTotal');
+      cartContainer.innerHTML = '';
+      var total = 0;
+
+      for (var i = 0; i < cartItems.length; i++) {
+        var item = cartItems[i];
+        var row = document.createElement('tr');
+        row.innerHTML = '<td>' + item.name + '</td><td>$' + item.price + '</td><td><button onclick="removeFromCart(' + i + ')">Remove</button></td>';
+        cartContainer.appendChild(row);
+        total += item.price;
+      }
+
+      cartTotal.textContent = total;
+    }
+   
+
+    function removeFromCart(index) {
+      cartItems.splice(index, 1);
+      updateCart();
+    }
+  
+    
+  </script>
+    <button type="button" >Payment</button>
+</br>
+</br>
+
+</body>
+</html>
